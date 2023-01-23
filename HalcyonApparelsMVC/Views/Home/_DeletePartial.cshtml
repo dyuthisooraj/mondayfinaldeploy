@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewData["Title"] = "Delete";
+    string id = "0";
+    id=ViewBag.id as string;
+}
+
+
+<link rel="stylesheet" href="~/css/popup.css" />
+<div class="wrap">
+    <h3>Delete</h3>
+    <div class="modal-delete ">
+        <form asp-action="Delete" method="post" >
+           
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+               
+                       Are you sure you want to delete?
+            </div>
+            
+            <div class="modal-footer">
+                 <input type="hidden" value="@Model" name="id" />
+           <input type="submit" value="Yes" class="btn btn-primary" data-inline="true" />
+                <button type="button" value="No" class="btn btn-primary closbtn" data-inline="true" data-dismiss="modal" style="margin-left:15px;">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="~/js/site.js" asp - append - version="true"></script>
+<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/lib/jquery.unobtrusive-ajax.min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $(".closbtn").click(function () {
+            $("#modal-delete").modal("hide");
+        });
+    });
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+
+</script>
